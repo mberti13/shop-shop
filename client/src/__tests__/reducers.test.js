@@ -12,6 +12,7 @@ import {
 const initialState = {
     products: [],
     categories:[{ name: 'Food'}],
+    // allows for testing of changing current category
     currentCategory: '1',
 };
 
@@ -35,5 +36,16 @@ test('UPDATE_CATEGORIES', () =>{
 
     expect(newState.categories.length).toBe(2);
     expect(initialState.categories.length).toBe(1);
+});
+
+test('UPDATE_CURRENT_CATEGORY', () =>{
+    let newState = reducer(initialState, {
+        type: UPDATE_CURRENT_CATEGORY,
+        // changes state from 1 to 2
+        currentCategory: '2'
+    });
+
+    expect(newState.currentCategory).toBe('2');
+    expect(initialState.currentCategory).toBe('1');
 });
 
