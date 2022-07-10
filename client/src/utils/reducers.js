@@ -1,40 +1,35 @@
-import { useReducer } from 'react';
-
+import { useReducer } from "react";
 import {
-    UPDATE_PRODUCTS,
-    UPDATE_CATEGORIES,
-    UPDATE_CURRENT_CATEGORY
-} from './actions';
+  UPDATE_PRODUCTS,
+  UPDATE_CATEGORIES,
+  UPDATE_CURRENT_CATEGORY
+} from "./actions";
 
-// ! reducer function to change state in products arrays
-// ! accepts 2 parameters(type/action name and value/data altered)
-export const reducer = (state, action) =>{
-    switch(action.type){
-        //if action is the value of "UPDATE_PRODUCTS", return a new state object with an updated products array
-        case UPDATE_PRODUCTS:
-            return{
-                ...state,
-                products: [...action.products],
-            };
-            // if action is value of "UPDATE_CATEGORIES", return a new state object with an updated categories array
-        case UPDATE_CATEGORIES:
-            return{
-                ...state,
-                categories: [...action.categories]
-            };
-        case UPDATE_CURRENT_CATEGORY:
-            return{
-                ...state,
-                currentCategory: action.currentCategory
-            };
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case UPDATE_PRODUCTS:
+      return {
+        ...state,
+        products: [...action.products],
+      };
 
-            // if it is none of these actions, do not update at all keep things the same
-            default: 
-            return state;
-    }
+    case UPDATE_CATEGORIES:
+      return {
+        ...state,
+        categories: [...action.categories],
+      };
+
+    case UPDATE_CURRENT_CATEGORY:
+      return {
+        ...state,
+        currentCategory: action.currentCategory
+      }
+
+    default:
+      return state;
+  }
 };
 
-// helps provide functionality between reducer() and state objects
-export function useProductReducer(initialState){
-    return useReducer(reducer, initialState);
+export function useProductReducer(initialState) {
+  return useReducer(reducer, initialState)
 }
